@@ -7,3 +7,4 @@ micronotes.txt
 frontend/
 main/
 .vscode/
+admin/.dbdata/
