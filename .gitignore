@@ -8,3 +8,5 @@ frontend/
 main/
 .vscode/
 admin/.dbdata/
+admin/admin/__pycache__/
+admin/products/__pycache__/
