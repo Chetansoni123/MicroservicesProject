@@ -4,7 +4,7 @@ env/
 Design_patterns_terms.txt
 micronotes.txt
 @localhostflask.session.sql
-frontend/
+frontend/node_modules/
 .vscode/
 admin/.dbdata/
 admin/admin/__pycache__/
