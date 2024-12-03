@@ -1,0 +1,135 @@
+1. Lazy [loading, initialization, evaluation]
+
+Why Lazy? The term reflects the behavior of postponing or 
+avoiding work unless it is strictly necessary - just like being 
+lazy. It aligns with programming principles of efficiency 
+and minimizing resource waste.
+
+-> Lazy loading: Involves delaying the loading of an object 
+or resource until it is needed. 
+e.g. In web dev, images or data for sections of a webpage 
+might not be loaded until the user scrolls to that part of 
+the page. This saves bandwidth and speeds up the initial 
+loading of the page. 
+
+-> Lazy evaluation: Expressions or queries are not immediately 
+evaluated but are only processed when their values 
+are explicitly needed. 
+
+e.g. In django, a QuerySet is lazy, meaning database queries 
+are not executed until the data is accessed (e.g., iterated over, 
+converted to a list, or sliced) This reduces the overhead 
+of executing unneccesary database calls. 
+
+qs = Product.objects.filter(category='electronics') # no query made
+print(qs) # query executes only when data is accessed
+
+-> Lazy initialization: A design pattern where an object's 
+initialization is postponed until it is required, which 
+can save memory or computational cost for objects that might 
+never be used. 
+
+e.g. Initializing a database connection only when the first 
+query is made. 
+
+2. Template Method Design Pattern:
+
+The ViewSet class in Django REST framework (DRF) is based on 
+the Template Method Design pattern. The design pattern 
+defines the skeleton of an algorithm or process in a base 
+class while allowing subclasses to override specific steps 
+of the process. 
+
+Key characterstics of TMD in ViewSets:
+
+-> Base class with Default behavior
+The ViewSet class in DRF provides a standard implementation for 
+actions like list, create, retrieve, update and destroy.
+
+-> Overriding specific steps
+you can override these methods in your subclass to customize 
+behavior. 
+
+For instance, overriding list lets you define how objects are 
+serialized and returned. 
+
+-------------------- 
+from rest_framework.viewsets import ModelViewSet
+from myapp.models import Product
+from myapp.serializers import ProductSerializer
+
+class ProductViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+    def list(self, request, *args, **kwargs):
+        # Custom logic for listing products
+         = super().list(request, *args, **kwargs)
+        response.data['custom_message'] = 'This is a customized response'
+        return response
+
+
+-----------------------------------
+
+from abc import ABC, abstractmethod
+
+class Beverage(ABC):
+    """Abstract base class defining the template method."""
+    
+    def prepare(self):
+        """Template method: defines the steps to prepare a beverage."""
+        self.boil_water()
+        self.brew()
+        self.pour_in_cup()
+        self.add_ingredients()
+
+    def boil_water(self):
+        """Common step: Boil water."""
+        print("Boiling water...")
+
+    def pour_in_cup(self):
+        """Common step: Pour the beverage into a cup."""
+        print("Pouring into cup...")
+
+    @abstractmethod
+    def brew(self):
+        """Abstract step: To be implemented by subclasses."""
+        pass
+
+    @abstractmethod
+    def add_ingredients(self):
+        """Abstract step: To be implemented by subclasses."""
+        pass
+
+
+class Tea(Beverage):
+    """Concrete class for making tea."""
+    
+    def brew(self):
+        print("Steeping the tea bag...")
+    
+    def add_ingredients(self):
+        print("Adding lemon and honey...")
+
+
+class Coffee(Beverage):
+    """Concrete class for making coffee."""
+    
+    def brew(self):
+        print("Brewing the coffee grounds...")
+    
+    def add_ingredients(self):
+        print("Adding sugar and milk...")
+
+
+# Client code to test the Template Method
+if __name__ == "__main__":
+    print("Preparing Tea:")
+    tea = Tea()
+    tea.prepare()
+
+    print("\nPreparing Coffee:")
+    coffee = Coffee()
+    coffee.prepare()
+
+--------------------------------
