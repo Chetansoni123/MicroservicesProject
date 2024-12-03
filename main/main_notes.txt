@@ -1,0 +1,40 @@
+Changes in flask migrate process. 
+
+1. I download all the latest dependencies including 
+flask-migrate.
+
+2. The video approach for migrating database is old and isn't supported 
+by latest flask-migrate module. 
+
+3. Recent process: use flask cli commands 
+
+-> import Migrate from flask_migrate (latest library) and
+and provide app & db to Migrate
+
+from flask_migrate import Migrate
+migrate = Migrate(app, db) 
+
+-> go to 'backend' docker container 
+docker-compose exec backend bash
+
+-> set environment variable inside container
+export FLASK_APP=main.py
+
+-> Run following commands
+flask db init
+flask db migrate -m "Initial migration"
+flask db upgrade
+
+
+init: Initializes a new migration directory. This directory contains 
+configuration files and a versions folder where future migration 
+scripts will be stoerd. 
+
+migrate: Generates a migration script based on the changes 
+detected in your database models. This script outlines how to 
+apply or reverse the changes in your database schema. 
+
+upgrade: Applies the latest migration scripts to your 
+database, updating its schema to match your models. 
+
+
