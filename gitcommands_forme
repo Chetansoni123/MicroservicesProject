@@ -7,8 +7,20 @@ $ git remote -v
 > origin git@github.com:Chetansoni123/MicroservicesProject.git (fetch)
 > origin git@github.com:Chetansoni123/MicroservicesProject.git (push)
 
+List all the branches in your local repositories
+$ git branch -a
+
+Fetch all the remote branches into your local repositories
+$ git fetch origin
+
+Rename the existing master to main branch
+$ git branch -m master main
+
 To tranfer current files/folders to main branch of my remote repository
 $ git checkout main
 
 Pull the latest changes from the remote main to avoid conflicts
 $ git pull origin main --allow-unrelated-histories
+
+Update the remote repository with the new branch name
+$ git push origin main
