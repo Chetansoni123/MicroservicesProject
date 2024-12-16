@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from .models import Product, User
 import random
 from .producer import publish
+from django.http import JsonResponse
 
 
 class ProductViewSet(viewsets.ViewSet):

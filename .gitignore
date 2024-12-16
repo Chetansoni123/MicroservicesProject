@@ -9,3 +9,6 @@ frontend/node_modules/
 admin/.dbdata/
 admin/admin/__pycache__/
 admin/products/__pycache__/
+frontend/react-crud/node_modules/
+main/.dbdata/
+main/__pycache__/

@@ -1,0 +1,14 @@
+To initialize local git repository
+$ git init
+
+To check remote origin name
+$ git remote -v
+
+> origin git@github.com:Chetansoni123/MicroservicesProject.git (fetch)
+> origin git@github.com:Chetansoni123/MicroservicesProject.git (push)
+
+To tranfer current files/folders to main branch of my remote repository
+$ git checkout main
+
+Pull the latest changes from the remote main to avoid conflicts
+$ git pull origin main --allow-unrelated-histories
